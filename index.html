@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio - English III - Yessica Lopez</title>
+    
+    <!-- TYPOGRAPHY: Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+        ===========================================================================
+        COLOR PALETTE & VARIABLES
+        ===========================================================================
+        */
+        :root {
+            --primary: #4F6BED;
+            --primary-dark: #3A51C5;
+            --secondary: #8FD3F4;
+            --accent: #F7B267;
+            --background: #F9FBFF;
+            --card-bg: #FFFFFF;
+            --text-dark: #2D3436;
+            --text-light: #FFFFFF;
+            --accent-green: #2ECC71;
+            --accent-orange: #F39C12;
+            --accent-red: #E74C3C;
+            --accent-soft: #EAF3FB;
+            --shadow: rgba(79, 107, 237, 0.1);
+            --gradient: linear-gradient(135deg, #4F6BED, #8FD3F4);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 
+        ===========================================================================
+        GENERAL STYLES
+        ===========================================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 
+        ===========================================================================
+        NAVIGATION BAR
+        ===========================================================================
+        */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            padding: 10px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--accent-soft);
+            padding-bottom: 10px;
+        }
+
+        .nav-info {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .nav-info span {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .nav-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .nav-subtitle {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: var(--accent-soft);
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--text-light);
+        }
+
+        .tab-btn.disabled {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .tab-btn:hover:not(.disabled):not(.active) {
+            background: #d0e1f9;
+        }
+
+        /* 
+        ===========================================================================
+        SECTION CARDS
+        ===========================================================================
+        */
+        section {
+            padding: 40px 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 6px solid var(--primary);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(26, 115, 232, 0.25);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        /* 
+        ===========================================================================
+        SECTION 1: HERO BANNER
+        ===========================================================================
+        */
+        .hero {
+            position: relative;
+            background: var(--gradient);
+            border-radius: 0 0 30px 30px;
+            padding: 80px 0;
+            color: var(--text-light);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .student-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 
+        ===========================================================================
+        SECTION 2: SELF-REFLECTION
+        ===========================================================================
+        */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .skill-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .mark-yes { color: var(--accent-green); font-weight: bold; }
+        .mark-sometimes { color: var(--accent-orange); font-weight: bold; }
+        .mark-no { color: var(--accent-red); font-weight: bold; }
+
+        .score-summary {
+            background: var(--accent-soft);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border: 1px dashed var(--primary);
+        }
+
+        .score-summary p {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .reflection-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            position: relative;
+            font-style: italic;
+            color: #444;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .reflection-box::before {
+            content: "“";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            color: var(--secondary);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        /* 
+        ===========================================================================
+        SECTION 3: SMART GOALS
+        ===========================================================================
+        */
+        .smart-explanation {
+            background: var(--accent-soft);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .goal-card {
+            padding: 25px;
+            border-radius: 16px;
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .goal-card.blue { background: linear-gradient(135deg, #1A73E8, #1565C0); }
+        .goal-card.orange { background: linear-gradient(135deg, #F4A261, #E67E22); }
+        .goal-card.green { background: linear-gradient(135deg, #2ECC71, #27AE60); }
+
+        .goal-card h4 {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .goal-text {
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .goal-table {
+            width: 100%;
+            font-size: 0.85rem;
+            border-collapse: collapse;
+        }
+
+        .goal-table td {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .goal-table td:first-child {
+            font-weight: 700;
+            width: 100px;
+        }
+
+        /* 
+        ===========================================================================
+        SECTION 4: WEEKLY SCHEDULE
+        ===========================================================================
+        */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        tr:hover td {
+            background-color: var(--accent-soft);
+        }
+
+        tr:nth-child(1) td { background-color: #fdf2f2; }
+        tr:nth-child(2) td { background-color: #f2fdf2; }
+        tr:nth-child(3) td { background-color: #f2f2fd; }
+        tr:nth-child(4) td { background-color: #fdfdf2; }
+        tr:nth-child(5) td { background-color: #fdf2fd; }
+        tr:nth-child(6) td { background-color: #f2fdfd; }
+        tr:nth-child(7) td { background-color: #fff9f2; }
+
+        .total-hours {
+            background: var(--text-dark) !important;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* 
+        ===========================================================================
+        SECTION 5: PORTFOLIO LINK
+        ===========================================================================
+        */
+        .portfolio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--gradient);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .portfolio-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(26, 115, 232, 0.4);
+        }
+
+        /* 
+        ===========================================================================
+        SECTION 6: REFERENCES
+        ===========================================================================
+        */
+        .ref-card {
+            background: #f8f9fa;
+            border-left-color: #ccc;
+        }
+
+        .ref-list {
+            list-style: none;
+        }
+
+        .ref-item {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            padding-left: 20px;
+            text-indent: -20px;
+        }
+
+        .ref-item a {
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        /* 
+        ===========================================================================
+        FOOTER
+        ===========================================================================
+        */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* 
+        ===========================================================================
+        RESPONSIVE DESIGN
+        ===========================================================================
+        */
+        @media (max-width: 768px) {
+            .nav-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .hero h1 { font-size: 2rem; }
+            
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-info span {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
+        /* 
+        ===========================================================================
+        UTILITY & TASK SECTIONS
+        ===========================================================================
+        */
+        .task-section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Task 2 Specific Styles */
+        .hero-task2 {
+            position: relative;
+            background: linear-gradient(135deg, #6C3483, #1A73E8);
+            border-radius: 0 0 30px 30px;
+            padding: 80px 0;
+            color: var(--text-light);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-task2::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .idea-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            background: var(--accent-soft);
+        }
+
+        .source-tag {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .profile-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .profile-badge {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: default;
+        }
+
+        .profile-badge.selected {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-soft);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        .essay-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .essay-paragraph {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .paragraph-label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .essay-image {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .image-caption {
+            display: block;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .word-count-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .grammar-review-card {
+            background: #f1f8e9;
+            border-left: 6px solid #8bc34a;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .screenshot-placeholder {
+            border: 2px dashed #ccc;
+            background: #f5f5f5;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .essay-image {
+                float: none;
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EDIT: Navigation Bar -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-header">
+                    <div>
+                        <h1 class="nav-title">ENGLISH III</h1>
+                        <p class="nav-subtitle">Course: 518008 | UNAD</p>
+                    </div>
+                    <div class="nav-info">
+                        <span><strong>Student:</strong> Yessica Carolina Lopez Quisovoni</span>
+                        <span><strong>Group:</strong> 518008_109</span>
+                        <span><strong>Date:</strong> February 17, 2026</span>
+                    </div>
+                </div>
+                <div class="nav-info" style="border-bottom: 1px solid var(--accent-soft); padding-bottom: 10px;">
+                    <span><strong>Tutor:</strong> Diana Patricia Alcala Perez</span>
+                    <span><strong>Program:</strong> Licenciatura en Lenguas Extranjeras con énfasis en inglés</span>
+                    <span><strong>School:</strong> Escuela de Ciencias de la Educación</span>
+                </div>
+                <div class="nav-tabs" id="navTabs">
+                    <button class="tab-btn active" data-target="home">🏠 Home</button>
+                    <button class="tab-btn" data-target="task1">📘 Task 1</button>
+                    <button class="tab-btn" data-target="task2">📗 Task 2</button>
+                    <button class="tab-btn disabled" data-target="coming-soon">📙 Task 4</button>
+                    <button class="tab-btn disabled" data-target="coming-soon">📕 Task 6</button>
+                    <button class="tab-btn disabled" data-target="coming-soon">📓 Task 8</button>
+                    <button class="tab-btn" data-target="all-references">📚 References</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="task-section">
+        <!-- EDIT: Home Section — HERO BANNER -->
+        <header class="hero" style="background: var(--gradient);">
+            <div class="container hero-content">
+                <span class="student-icon">📚</span>
+                <h1>English III – Learning Portfolio</h1>
+                <p>Self-Directed Learning Plan</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="card" style="border-left-color: var(--accent); max-width: 800px; margin: 0 auto 40px;">
+                <h2 class="section-title">👋 Welcome!</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 25px;">
+                    "This interactive portfolio presents my self-directed learning plan for the course English III. It includes reflection, goals, and strategies to improve my English skills during this semester."
+                </p>
+                
+                <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; justify-content: center;">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400" alt="Learning English" style="width: 250px; border-radius: 20px; box-shadow: 0 10px 20px var(--shadow);" referrerPolicy="no-referrer">
+                    
+                    <div style="flex: 1; min-width: 280px;">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--secondary); display: inline-block;">Student Information</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 8px;"><strong>Name:</strong> Yesica Carolina Lopez Quisovoni</li>
+                            <li style="margin-bottom: 8px;"><strong>University:</strong> UNAD</li>
+                            <li style="margin-bottom: 8px;"><strong>Program:</strong> Licenciatura en Lenguas Extranjeras con énfasis en inglés</li>
+                            <li style="margin-bottom: 8px;"><strong>Tutor:</strong> Diana Patricia Alcala Perez</li>
+                            <li style="margin-bottom: 8px;"><strong>Group:</strong> 518008_109</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="task1" class="task-section" style="display:none">
+        <!-- EDIT: Section 1 — HERO BANNER -->
+        <header class="hero">
+            <div class="container hero-content">
+                <span class="student-icon">👩‍🎓</span>
+                <h1>Task 1: Self-Directed Learning Plan</h1>
+                <p>Annex 1 — English B1 Level</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- EDIT: Section 2 — STEP 1: SELF-REFLECTION -->
+            <section id="step1">
+                <div class="card">
+                    <h2 class="section-title">📊 Step 1: Self-Reflection</h2>
+                    <p class="section-subtitle">English Self-Assessment Checklist</p>
+
+                    <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Listening" style="width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 4px 15px var(--shadow);" referrerPolicy="no-referrer">
+                    </div>
+
+                    <div class="checklist-grid">
+                        <!-- Listening -->
+                        <div class="skill-card" style="border-left-color: var(--primary);">
+                            <h4>🎧 LISTENING</h4>
+                            <div class="skill-item">
+                                <span>I can understand the main points of clear standard speech on familiar topics (school, work, leisure).</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can follow short, simple lectures or instructions if the topic is familiar.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can catch the main ideas of TV/radio programs when the delivery is slow and clear.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                        </div>
+
+                        <!-- Reading -->
+                        <div class="skill-card" style="border-left-color: var(--accent-green);">
+                            <h4>📖 READING</h4>
+                            <div class="skill-item">
+                                <span>I can understand texts that consist mainly of high-frequency, everyday or job-related language.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can find specific information in simple everyday material (ads, timetables, menus).</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can understand short reports, articles, or stories if they are written in straightforward language.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                        </div>
+
+                        <!-- Speaking Interaction -->
+                        <div class="skill-card" style="border-left-color: var(--secondary);">
+                            <h4>🗣️ SPEAKING – INTERACTION</h4>
+                            <div class="skill-item">
+                                <span>I can take part in simple conversations on familiar topics without much preparation.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can express my opinions and ideas about everyday issues and respond to others.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can ask for and give advice using simple expressions.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                        </div>
+
+                        <!-- Speaking Production -->
+                        <div class="skill-card" style="border-left-color: #9b59b6;">
+                            <h4>🎤 SPEAKING – PRODUCTION</h4>
+                            <div style="margin-bottom: 15px; text-align: center;">
+                                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400" alt="Speaking" style="width: 100%; border-radius: 8px;" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="skill-item">
+                                <span>I can connect phrases in a simple way to describe experiences, events, and plans.</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can give short, prepared presentations on familiar topics (e.g., my studies, leadership).</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can describe strengths and weaknesses in my own learning process.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                        </div>
+
+                        <!-- Writing -->
+                        <div class="skill-card" style="border-left-color: #1abc9c;">
+                            <h4>✍️ WRITING</h4>
+                            <div style="margin-bottom: 15px; text-align: center;">
+                                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400" alt="Writing" style="width: 100%; border-radius: 8px;" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="skill-item">
+                                <span>I can write short, connected texts on topics of personal interest.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can write emails, messages, or notes that give or ask for simple information.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can describe goals, routines, and study habits using basic connectors (and, but, because, so).</span>
+                                <span class="mark-sometimes">➖</span>
+                            </div>
+                        </div>
+
+                        <!-- Learning Strategies -->
+                        <div class="skill-card" style="border-left-color: #f1c40f;">
+                            <h4>🧠 STRATEGIES & AUTONOMY</h4>
+                            <div class="skill-item">
+                                <span>I can set goals for my English learning and plan how to achieve them.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can use dictionaries, online resources, or apps to support my learning.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>I can reflect on what I do well and what I need to improve.</span>
+                                <span class="mark-yes">✅</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="score-summary">
+                        <p>
+                            <span class="mark-yes">✅ Confident: 8</span> | 
+                            <span class="mark-sometimes">➖ Developing: 9</span> | 
+                            <span class="mark-no">❌ Not yet: 0</span>
+                        </p>
+                        <p style="color: var(--primary); font-size: 1.1rem;">Result: You are developing your skills but still need practice.</p>
+                    </div>
+
+                    <div class="reflection-box">
+                        "I am a motivated and responsible English learner. My strongest skill is reading comprehension because I can understand texts more easily than spoken language. I also use music and videos as study tools, which makes learning more interesting and practical. However, speaking is more difficult for me because I feel nervous in public situations. Listening to native speakers at normal speed is still challenging. I believe that with constant practice and discipline, I will become more confident and fluent in English."
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Section 3 — STEP 2: SMART GOALS -->
+            <section id="step2">
+                <div class="card">
+                    <h2 class="section-title">🎯 Step 2: Goal Setting — SMART Goals</h2>
+                    
+                    <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Goals" style="width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 4px 15px var(--shadow);" referrerPolicy="no-referrer">
+                    </div>
+
+                    <div class="smart-explanation">
+                        <strong>S</strong> = Specific | <strong>M</strong> = Measurable | <strong>A</strong> = Achievable | <strong>R</strong> = Relevant | <strong>T</strong> = Time-bound
+                    </div>
+
+                    <div class="goals-grid">
+                        <!-- Goal 1 -->
+                        <div class="goal-card blue">
+                            <h4>🎧 SMART GOAL 1 — Listening</h4>
+                            <div class="goal-text">
+                                "I will listen to English podcasts three times a week for 30 minutes during the next three months to improve my listening comprehension."
+                            </div>
+                            <table class="goal-table">
+                                <tr><td>Specific</td><td>Improve listening comprehension</td></tr>
+                                <tr><td>Measurable</td><td>Listen to 3 podcasts per week (30 min each)</td></tr>
+                                <tr><td>Achievable</td><td>Use free platforms like YouTube and Spotify</td></tr>
+                                <tr><td>Relevant</td><td>Listening is necessary to understand classes and conversations</td></tr>
+                                <tr><td>Time-bound</td><td>During the next 3 months</td></tr>
+                            </table>
+                        </div>
+
+                        <!-- Goal 2 -->
+                        <div class="goal-card orange">
+                            <h4>🎤 SMART GOAL 2 — Speaking</h4>
+                            <div class="goal-text">
+                                "I will practice speaking twice a week and record a 3-minute audio every week for the next two months to improve my fluency and pronunciation."
+                            </div>
+                            <table class="goal-table">
+                                <tr><td>Specific</td><td>Improve speaking fluency and pronunciation</td></tr>
+                                <tr><td>Measurable</td><td>Record a 3-minute audio every week</td></tr>
+                                <tr><td>Achievable</td><td>Practice twice a week at home</td></tr>
+                                <tr><td>Relevant</td><td>Speaking is important for academic presentations</td></tr>
+                                <tr><td>Time-bound</td><td>For the next 2 months</td></tr>
+                            </table>
+                        </div>
+
+                        <!-- Goal 3 -->
+                        <div class="goal-card green">
+                            <h4>📚 SMART GOAL 3 — Vocab & Grammar</h4>
+                            <div class="goal-text">
+                                "I will learn 15 new words and study two grammar topics every week during this semester to improve my English accuracy."
+                            </div>
+                            <table class="goal-table">
+                                <tr><td>Specific</td><td>Expand vocabulary and grammar knowledge</td></tr>
+                                <tr><td>Measurable</td><td>Learn 15 new words and 2 grammar topics per week</td></tr>
+                                <tr><td>Achievable</td><td>Study 30 minutes daily</td></tr>
+                                <tr><td>Relevant</td><td>Vocabulary and grammar improve writing and speaking accuracy</td></tr>
+                                <tr><td>Time-bound</td><td>During this semester</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Section 4 — STEP 3: WEEKLY STUDY SCHEDULE -->
+            <section id="step3">
+                <div class="card">
+                    <h2 class="section-title">📅 Step 3: Weekly Study Plan</h2>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Time</th>
+                                    <th>Resources</th>
+                                    <th>Activity Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Monday</strong></td>
+                                    <td>6:00 pm – 7:00 pm</td>
+                                    <td>YouTube, Podcast</td>
+                                    <td>Listening practice + vocabulary</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tuesday</strong></td>
+                                    <td>6:00 pm – 7:30 pm</td>
+                                    <td>Course guide</td>
+                                    <td>Course activities + grammar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wednesday</strong></td>
+                                    <td>6:00 pm – 7:00 pm</td>
+                                    <td>Voice recorder</td>
+                                    <td>Speaking practice + reading</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Thursday</strong></td>
+                                    <td>6:00 pm – 7:00 pm</td>
+                                    <td>Dictionary, apps</td>
+                                    <td>Vocabulary + listening</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Friday</strong></td>
+                                    <td>5:00 pm – 6:00 pm</td>
+                                    <td>Notebook</td>
+                                    <td>Writing practice + grammar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Saturday</strong></td>
+                                    <td>4:00 pm – 5:30 pm</td>
+                                    <td>Movie/Series</td>
+                                    <td>Watch movie + note vocabulary</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sunday</strong></td>
+                                    <td>4:00 pm – 5:00 pm</td>
+                                    <td>Notes</td>
+                                    <td>Weekly review + speaking</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="total-hours">📊 Total weekly study hours: 8 hours 30 minutes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Section 5 — STEP 4: ONLINE PORTFOLIO -->
+            <section id="step4" style="text-align: center;">
+                <div class="card">
+                    <h2 class="section-title" style="justify-content: center;">🌐 Step 4: Online Portfolio</h2>
+                    <p class="section-subtitle">Access the interactive guide on Genially</p>
+                    <a href="https://view.genially.com/69949c1988cc86571e018b01/guide-self-directed-learning-plan-english-b1" target="_blank" class="portfolio-btn">
+                        <span>🔗</span> View My Portfolio on Genially
+                    </a>
+                </div>
+            </section>
+
+            <!-- EDIT: Section 6 — REFERENCES -->
+            <section id="references">
+                <div class="card ref-card">
+                    <h2 class="section-title">📚 References</h2>
+                    <ul class="ref-list">
+                        <li class="ref-item">
+                            Acosta, J. C. (2021). Taking English language learning for a walk: some biopedagogical considerations for mediating English language learning outside the classroom. EducAcción Sentipensante, 1(2), 39–46. 
+                            <a href="https://hemeroteca.unad.edu.co/index.php/educ_sentipensante/article/view/5427/5214" target="_blank">https://hemeroteca.unad.edu.co/index.php/educ_sentipensante/article/view/5427/5214</a>
+                        </li>
+                        <li class="ref-item">
+                            Fajardo, K. M. F. (2025). Minitutorial on how to use Genially [Video]. YouTube. 
+                            <a href="https://youtu.be/W4genKUtmNE?si=TL8hbk0ohxufSsi_" target="_blank">https://youtu.be/W4genKUtmNE?si=TL8hbk0ohxufSsi_</a>
+                        </li>
+                        <li class="ref-item">
+                            Oxford University Press ELT. Learn English in 2024 with SMART goals – Learning English with Oxford.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="task2" class="task-section" style="display:none">
+        <!-- EDIT: Task 2 - Section 1 — HERO BANNER -->
+        <header class="hero-task2">
+            <div class="container hero-content">
+                <span class="student-icon">👑</span>
+                <h1>Task 2: Exploration of Leadership Identity</h1>
+                <p>Discovering my role as a Community Leader</p>
+                <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
+                    <p>Student: Yessica Carolina Lopez Quisovoni</p>
+                    <p>Group: 518008_109 | Course: English III</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- EDIT: Task 2 - Section 2 — STEP 1: READING -->
+            <section id="task2-step1">
+                <div class="card">
+                    <h2 class="section-title">📖 Step 1: Reading — Main Ideas from the Texts</h2>
+                    <div class="goals-grid">
+                        <div class="skill-card" style="border-left-color: var(--primary);">
+                            <span class="idea-badge">💡 Idea 1</span>
+                            <p>"Community leaders play a vital role in reducing generational and technological gaps, helping neighborhoods grow and improve their quality of life."</p>
+                            <span class="source-tag">(Contreras Salamanca & Garzón Ávila, 2021)</span>
+                        </div>
+                        <div class="skill-card" style="border-left-color: var(--secondary);">
+                            <span class="idea-badge">💡 Idea 2</span>
+                            <p>"Leadership is not the same in every culture — different societies have different expectations about how a leader should communicate, behave, and make decisions."</p>
+                            <span class="source-tag">(British Council, n.d.)</span>
+                        </div>
+                        <div class="skill-card" style="border-left-color: var(--accent-green);">
+                            <span class="idea-badge">💡 Idea 3</span>
+                            <p>"A good leader must adapt to their context, listen to others, and build trust within their community rather than simply giving orders."</p>
+                            <span class="source-tag">(Personal reflection)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 2 - Section 3 — LEADERSHIP PROFILE -->
+            <section id="task2-profile">
+                <div class="card">
+                    <h2 class="section-title">🧭 Discover Your Leadership Profile</h2>
+                    
+                    <div class="profile-selector">
+                        <div class="profile-badge">👨‍👩‍👧 Family</div>
+                        <div class="profile-badge selected">✅ 🏘️ Community</div>
+                        <div class="profile-badge">🎓 Academic</div>
+                    </div>
+                    <p style="text-align: center; font-size: 0.8rem; color: #666; margin-bottom: 30px;">Selected Profile: Community Leader</p>
+
+                    <div class="reflection-box" style="border-left-color: #9b59b6;">
+                        <h4 style="color: #9b59b6; margin-bottom: 10px;">My Leadership Qualities</h4>
+                        "I am a leader because I am empathetic and supportive. I am always able to understand how other people feel, and this helps me genuinely connect with them. I usually show leadership when someone in my community is going through a difficult situation and needs support or guidance. I listen carefully before making any decision, and I try to find solutions that work for everyone involved."
+                    </div>
+
+                    <h3 style="margin: 40px 0 20px;">📌 Examples of Leadership in My Life</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4 style="color: var(--primary);">🤝 Resolving a Neighbor Conflict</h4>
+                            <p>When a group of neighbors had conflicts about the use of shared spaces in our building, I organized a meeting so that everyone could express their opinions calmly. I made sure all voices were heard, and by the end, we reached a fair agreement together.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4 style="color: var(--primary);">💙 Supporting a Friend in Crisis</h4>
+                            <p>A close friend was going through a personal crisis and felt isolated. I stayed by their side, listened without judging, and helped them find the support they needed. That experience taught me that sometimes being present is the most powerful form of leadership.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4 style="color: var(--primary);">🏠 Welcoming a New Family</h4>
+                            <p>In my neighborhood, there was a family that had recently arrived and did not know anyone. I introduced them to other neighbors, helped them with basic needs, and made them feel welcome. Small acts of solidarity can create a stronger and more united community.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 2 - Section 4 — DESCRIPTIVE ESSAY -->
+            <section id="task2-essay">
+                <div class="card">
+                    <h2 class="section-title">✍️ Step 2: Descriptive Essay</h2>
+                    <p class="section-subtitle">My Community Leadership Profile</p>
+
+                    <div class="essay-text">
+                        <div class="essay-image-container">
+                            <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=400" alt="Community Leadership" class="essay-image" referrerPolicy="no-referrer">
+                            <span class="image-caption">Community Leadership</span>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Introduction</span>
+                            <p>Leadership is not only about having power or giving orders. It is about understanding people, supporting them, and working together to build a better environment. After reflecting on my personal qualities and experiences, I have identified myself as a community leader. This profile represents who I am and how I relate to the people around me.</p>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Why Community Leadership</span>
+                            <p>I chose the community leadership profile because I have always felt a strong connection with the people in my neighborhood. I believe that a community can only grow when its members help each other. According to Contreras Salamanca and Garzón Ávila (2021), community leaders play a vital role in reducing gaps and improving the quality of life for everyone. This idea reflects my own values and motivates me to be more involved in my surroundings.</p>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Key Quality: Empathy</span>
+                            <p>My most important leadership quality is empathy. I have always been able to understand how other people feel, and this has helped me build trust with those around me. Empathy is more powerful than authority because it creates real connections between people. When someone in my community has faced a difficult situation, I have offered my support and listened carefully to their needs. I think that a good leader must be sensitive to others' emotions before making any decision.</p>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Example 1 (Neighbor Conflict)</span>
+                            <p>One example of my community leadership happened when a group of neighbors was having conflicts about the use of shared spaces in our building. Many people were frustrated and did not want to talk to each other. I decided to organize a small meeting where everyone could express their opinions calmly. I prepared a list of suggestions and made sure that all voices were heard. By the end of the meeting, we had reached an agreement that worked for everyone. That experience showed me that empathy and patience can solve problems more effectively than arguments. Furthermore, I had never managed a group conflict before that experience, so it was an important moment of personal growth for me.</p>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Example 2 (New Family)</span>
+                            <p>Another situation where I showed leadership was when a family arrived in my neighborhood and did not know anyone. I introduced them to other neighbors, helped them with basic needs, and made them feel welcome. Leadership can be found in small everyday actions, not only in big decisions. A good leader must notice the needs of others and act with kindness.</p>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Significance of Leadership</span>
+                            <p>Leadership has been significant in my life because it has helped me grow as a person. I have learned that listening is sometimes more valuable than speaking. I have also understood that the best leaders do not work alone — they build teams and inspire others to participate. As the British Council (n.d.) explains, cultural expectations shape the way leaders communicate and interact, which means that good leaders must adapt to their context and respect differences.</p>
+                        </div>
+
+                        <div class="essay-paragraph">
+                            <span class="paragraph-label">Conclusion</span>
+                            <p>In conclusion, my community leadership profile is based on empathy, solidarity, and a genuine desire to help others. I may not have all the answers, but I am always willing to listen, support, and find solutions together. Leadership should make communities stronger, more united, and more compassionate. I believe that every person can be a leader in their own way, and I hope to continue developing this role in my daily life.</p>
+                        </div>
+
+                        <div class="word-count-badge">
+                            📝 Word count: ~520 words ✅ Requirement met (min. 500 words)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 2 - Section 5 — GRAMMAR REVIEW -->
+            <section id="task2-grammar">
+                <div class="card">
+                    <h2 class="section-title">🔍 Step 4: Spelling and Grammar Review</h2>
+                    <div class="grammar-review-card">
+                        <span style="font-size: 2rem;">✅</span>
+                        <div>
+                            <p><strong>This essay was reviewed using LanguageTool (grammar and orthography checker).</strong></p>
+                            <p style="font-size: 0.9rem; opacity: 0.8;">The text was checked for spelling, punctuation, grammar, and style. Suggested corrections were applied before final submission.</p>
+                        </div>
+                    </div>
+                    <div class="screenshot-container" style="margin-top: 20px; text-align: center;">
+                        <img src="https://ais-dev-kv7soytykag6aahayfz35j-233524263612.us-west2.run.app/api/placeholder/800/450" alt="Grammar Review Screenshot" id="grammar-screenshot" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px var(--shadow); border: 1px solid #ddd;" referrerPolicy="no-referrer">
+                        <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Evidence: Grammar review tool screenshot (LanguageTool — Chrome Extension)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 2 - Section 6 — ONLINE PORTFOLIO -->
+            <section id="task2-portfolio" style="text-align: center;">
+                <div class="card">
+                    <h2 class="section-title" style="justify-content: center;">🌐 Step 5: Online Portfolio</h2>
+                    <p class="section-subtitle">Evidence of compliance with the self-directed learning plan ✅</p>
+                    <a href="https://view.genially.com/69949c1988cc86571e018b01/guide-self-directed-learning-plan-english-b1" target="_blank" class="portfolio-btn" style="background: linear-gradient(135deg, #6C3483, #1A73E8);">
+                        <span>🔗</span> View My Portfolio on Genially
+                    </a>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 2 - Section 7 — REFERENCES -->
+            <section id="task2-references">
+                <div class="card ref-card">
+                    <h2 class="section-title">📚 References</h2>
+                    <ul class="ref-list">
+                        <li class="ref-item">
+                            Contreras Salamanca, L. B., & Garzón Ávila, Y. (2021). Community and Neighborhoods Leadership in Generational Lagging of Dignitaries, Main Cause of Technological Gaps in Community Leaders. 
+                            <a href="https://publicaciones.unad.edu.co/index.php/working/article/view/4709/4462" target="_blank">https://publicaciones.unad.edu.co/index.php/working/article/view/4709/4462</a>
+                        </li>
+                        <li class="ref-item">
+                            British Council. (n.d.). Cultural expectations and leadership: Reading. Learn English. 
+                            <a href="https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership" target="_blank">https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="coming-soon" class="task-section" style="display:none">
+        <div class="container" style="text-align: center; padding: 100px 20px;">
+            <h2 style="font-size: 5rem; margin-bottom: 20px;">🚧</h2>
+            <h2 style="font-size: 3rem; color: #ccc;">This task is coming soon!</h2>
+            <p>Stay tuned as Yessica completes the course.</p>
+            <button class="tab-btn active" style="margin-top: 20px;" onclick="document.querySelector('[data-target=\'home\']').click()">Back to Home</button>
+        </div>
+    </div>
+
+    <div id="all-references" class="task-section" style="display:none">
+        <div class="container">
+            <header class="hero" style="background: var(--gradient); margin-bottom: 40px;">
+                <div class="container hero-content">
+                    <span class="student-icon">📚</span>
+                    <h1>Course References</h1>
+                    <p>English III — Academic Sources</p>
+                </div>
+            </header>
+
+            <div class="card ref-card">
+                <h2 class="section-title">Task 1 References</h2>
+                <ul class="ref-list">
+                    <li class="ref-item">
+                        Acosta, J. C. (2021). Taking English language learning for a walk: some biopedagogical considerations for mediating English language learning outside the classroom. EducAcción Sentipensante, 1(2), 39–46. 
+                        <a href="https://hemeroteca.unad.edu.co/index.php/educ_sentipensante/article/view/5427/5214" target="_blank">https://hemeroteca.unad.edu.co/index.php/educ_sentipensante/article/view/5427/5214</a>
+                    </li>
+                    <li class="ref-item">
+                        Fajardo, K. M. F. (2025). Minitutorial on how to use Genially [Video]. YouTube. 
+                        <a href="https://youtu.be/W4genKUtmNE?si=TL8hbk0ohxufSsi_" target="_blank">https://youtu.be/W4genKUtmNE?si=TL8hbk0ohxufSsi_</a>
+                    </li>
+                    <li class="ref-item">
+                        Oxford University Press ELT. Learn English in 2024 with SMART goals – Learning English with Oxford.
+                    </li>
+                </ul>
+
+                <h2 class="section-title" style="margin-top: 40px;">Task 2 References</h2>
+                <ul class="ref-list">
+                    <li class="ref-item">
+                        Contreras Salamanca, L. B., & Garzón Ávila, Y. (2021). Community and Neighborhoods Leadership in Generational Lagging of Dignitaries, Main Cause of Technological Gaps in Community Leaders. 
+                        <a href="https://publicaciones.unad.edu.co/index.php/working/article/view/4709/4462" target="_blank">https://publicaciones.unad.edu.co/index.php/working/article/view/4709/4462</a>
+                    </li>
+                    <li class="ref-item">
+                        British Council. (n.d.). Cultural expectations and leadership: Reading. Learn English. 
+                        <a href="https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership" target="_blank">https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT: Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>© 2026 Yessica Carolina Lopez Quisovoni</p>
+            <p>English III — UNAD | Group 518008_109</p>
+            <p>Tutor: Diana Patricia Alcala Perez</p>
+        </div>
+    </footer>
+
+    <script>
+        /* 
+        ===========================================================================
+        INTERACTIVITY & ANIMATIONS
+        ===========================================================================
+        */
+
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll('.tab-btn');
+        const sections = document.querySelectorAll('.task-section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.target;
+                if (!tab.classList.contains('disabled')) {
+                    sections.forEach(s => s.style.display = 'none');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.getElementById(target).style.display = 'block';
+                    tab.classList.add('active');
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                } else {
+                    // Show "Coming Soon" message in content area
+                    sections.forEach(s => s.style.display = 'none');
+                    document.getElementById('coming-soon').style.display = 'block';
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                }
+            });
+        });
+
+        // Scroll Animation (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth Scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

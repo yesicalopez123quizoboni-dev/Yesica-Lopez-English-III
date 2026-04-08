@@ -720,13 +720,60 @@
             margin-bottom: 20px;
         }
 
-        .screenshot-placeholder {
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .screenshot-card {
+            background: #F8F9FA;
             border: 2px dashed #ccc;
-            background: #f5f5f5;
-            padding: 40px;
             border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px var(--shadow);
             text-align: center;
-            color: #999;
+            transition: var(--transition);
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #eee;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .screenshot-caption {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .findings-box {
+            border-left: 6px solid var(--primary);
+            background: #f0f7ff;
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-top: 30px;
+        }
+
+        .findings-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         @media (max-width: 768px) {
@@ -735,6 +782,165 @@
                 width: 100%;
                 margin-left: 0;
             }
+        }
+        /* Task 4 Specific Styles */
+        .hero-task4 {
+            position: relative;
+            background: linear-gradient(135deg, #1B4332, #F4A261);
+            border-radius: 0 0 30px 30px;
+            padding: 80px 0;
+            color: var(--text-light);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-task4::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200') center/cover no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .leader-avatar-circle {
+            width: 120px;
+            height: 120px;
+            background-color: #1B4332;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .question-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border-left: 5px solid #2D6A4F;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .question-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .number-badge {
+            min-width: 35px;
+            height: 35px;
+            background: #1B4332;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .audio-card {
+            background: #FFF8E1;
+            border: 2px solid #F4A261;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #F4A261, #E67E22);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(244, 162, 97, 0.6);
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .chat-bubble {
+            max-width: 75%;
+            padding: 15px 20px;
+            border-radius: 18px;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .chat-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bubble-jessica {
+            align-self: flex-end;
+            background-color: #1A73E8;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bubble-jessica .chat-label { color: #E3F2FD; text-align: right; }
+
+        .bubble-gandhi {
+            align-self: flex-start;
+            background-color: #1B4332;
+            color: white;
+            border-bottom-left-radius: 4px;
+        }
+
+        .bubble-gandhi .chat-label { color: #D8F3DC; }
+
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .conclusion-card {
+            padding: 25px;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 4px 15px var(--shadow);
+            border-top: 6px solid var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .chat-bubble { max-width: 90%; }
+            .conclusion-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -764,7 +970,7 @@
                     <button class="tab-btn active" data-target="home">🏠 Home</button>
                     <button class="tab-btn" data-target="task1">📘 Task 1</button>
                     <button class="tab-btn" data-target="task2">📗 Task 2</button>
-                    <button class="tab-btn disabled" data-target="coming-soon">📙 Task 4</button>
+                    <button class="tab-btn" data-target="task4">📙 Task 4</button>
                     <button class="tab-btn disabled" data-target="coming-soon">📕 Task 6</button>
                     <button class="tab-btn disabled" data-target="coming-soon">📓 Task 8</button>
                     <button class="tab-btn" data-target="all-references">📚 References</button>
@@ -1244,28 +1450,10 @@
                 </div>
             </section>
 
-            <!-- EDIT: Task 2 - Section 5 — GRAMMAR REVIEW -->
-            <section id="task2-grammar">
-                <div class="card">
-                    <h2 class="section-title">🔍 Step 4: Spelling and Grammar Review</h2>
-                    <div class="grammar-review-card">
-                        <span style="font-size: 2rem;">✅</span>
-                        <div>
-                            <p><strong>This essay was reviewed using LanguageTool (grammar and orthography checker).</strong></p>
-                            <p style="font-size: 0.9rem; opacity: 0.8;">The text was checked for spelling, punctuation, grammar, and style. Suggested corrections were applied before final submission.</p>
-                        </div>
-                    </div>
-                    <div class="screenshot-container" style="margin-top: 20px; text-align: center;">
-                        <img src="https://ais-dev-kv7soytykag6aahayfz35j-233524263612.us-west2.run.app/api/placeholder/800/450" alt="Grammar Review Screenshot" id="grammar-screenshot" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px var(--shadow); border: 1px solid #ddd;" referrerPolicy="no-referrer">
-                        <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Evidence: Grammar review tool screenshot (LanguageTool — Chrome Extension)</p>
-                    </div>
-                </div>
-            </section>
-
             <!-- EDIT: Task 2 - Section 6 — ONLINE PORTFOLIO -->
             <section id="task2-portfolio" style="text-align: center;">
                 <div class="card">
-                    <h2 class="section-title" style="justify-content: center;">🌐 Step 5: Online Portfolio</h2>
+                    <h2 class="section-title" style="justify-content: center;">🌐 Step 4: Online Portfolio</h2>
                     <p class="section-subtitle">Evidence of compliance with the self-directed learning plan ✅</p>
                     <a href="https://view.genially.com/69949c1988cc86571e018b01/guide-self-directed-learning-plan-english-b1" target="_blank" class="portfolio-btn" style="background: linear-gradient(135deg, #6C3483, #1A73E8);">
                         <span>🔗</span> View My Portfolio on Genially
@@ -1285,6 +1473,296 @@
                         <li class="ref-item">
                             British Council. (n.d.). Cultural expectations and leadership: Reading. Learn English. 
                             <a href="https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership" target="_blank">https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="task4" class="task-section" style="display:none">
+        <!-- EDIT: Task 4 - Section 1 — HERO BANNER -->
+        <header class="hero hero-task4">
+            <div class="container hero-content">
+                <span class="student-icon">🕊️</span>
+                <h1>Task 4: AI Simulated Interview</h1>
+                <p>A conversation with Mahatma Gandhi</p>
+                <div style="margin-top: 20px; opacity: 0.9;">
+                    <p><strong>Student:</strong> Yessica Carolina Lopez Quisovoni</p>
+                    <p><strong>Group:</strong> 518008_109 | English III</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- EDIT: Task 4 - Section 2 — LEADER DESCRIPTION -->
+            <section id="task4-leader">
+                <div class="card">
+                    <h2 class="section-title">👤 Leader Description: Mahatma Gandhi</h2>
+                    <div class="checklist-grid" style="margin-top: 20px;">
+                        <!-- LEFT COLUMN -->
+                        <div class="skill-card" style="border-left: 6px solid #1B4332;">
+                            <div class="leader-avatar-circle">🧔</div>
+                            <div style="text-align: center;">
+                                <h3 style="color: #1B4332; margin-bottom: 15px;">Mahatma Gandhi</h3>
+                                <div class="skill-item"><span><strong>Born:</strong></span> <span>October 2, 1869 — Porbandar, India</span></div>
+                                <div class="skill-item"><span><strong>Died:</strong></span> <span>January 30, 1948</span></div>
+                                <div class="skill-item"><span><strong>Known for:</strong></span> <span>Non-violent resistance (Satyagraha)</span></div>
+                                <div class="skill-item"><span><strong>Inspired:</strong></span> <span>Martin Luther King Jr., Nelson Mandela</span></div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN -->
+                        <div class="skill-card">
+                            <h4 style="color: var(--primary);">Biography</h4>
+                            <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+                                Mahatma Gandhi was born on October 2, 1869, in Porbandar, India. 
+                                He studied law in England and later worked in South Africa, where 
+                                he first experienced racial discrimination. This experience motivated 
+                                him to fight for the rights of oppressed people. When he returned 
+                                to India, he led the independence movement against British colonial 
+                                rule. Gandhi believed in non-violent resistance, which he called 
+                                'Satyagraha,' meaning truth and peaceful protest. He organized 
+                                marches, strikes, and boycotts to fight injustice without using 
+                                violence. His most famous action was the Salt March in 1930. On 
+                                January 30, 1948, Gandhi was assassinated, but his legacy lives on. 
+                                He inspired leaders like Martin Luther King Jr. and Nelson Mandela, 
+                                and he remains a global symbol of peace, courage, and justice.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 4 - Section 3 — INTERVIEW QUESTIONNAIRE -->
+            <section id="task4-questions">
+                <div class="card">
+                    <h2 class="section-title">📋 Interview Questionnaire</h2>
+                    <p class="section-subtitle">Questions prepared by Yessica Lopez</p>
+                    
+                    <div class="questions-list">
+                        <div class="question-card">
+                            <div class="number-badge">1</div>
+                            <p>Where were you born and how was your childhood in India?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">2</div>
+                            <p>Who inspired you to fight for justice and equality?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">3</div>
+                            <p>What is non-violent resistance and why did you choose it?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">4</div>
+                            <p>How did you feel when you experienced discrimination in South Africa?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">5</div>
+                            <p>What was the Salt March and why was it so important?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">6</div>
+                            <p>How did you motivate millions of people to follow you peacefully?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">7</div>
+                            <p>What was the most difficult moment in your fight for independence?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">8</div>
+                            <p>What do you think is the most important quality of a good leader?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">9</div>
+                            <p>How do you think young people can change the world today?</p>
+                        </div>
+                        <div class="question-card">
+                            <div class="number-badge">10</div>
+                            <p>What is the message you want to leave for future generations?</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 4 - Section 4 — AI SIMULATED INTERVIEW -->
+            <section id="task4-interview">
+                <div class="card">
+                    <h2 class="section-title">🎙️ AI Simulated Interview with Mahatma Gandhi</h2>
+                    <p class="section-subtitle">Conducted by: Yessica Carolina Lopez Quisovoni</p>
+
+                    <div class="audio-card">
+                        <p style="font-size: 1.1rem; margin-bottom: 10px;">🎧 <strong>Listen to the full AI interview recording:</strong></p>
+                        <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #FFE082; margin: 15px 0;">
+                            <p style="color: #666; font-size: 0.9rem;">Audio Source: Vocaroo</p>
+                        </div>
+                        <a href="https://voca.ro/11lk7Q1aZG6Z" target="_blank" class="play-btn">
+                            ▶️ Play Interview on Voca.ro
+                        </a>
+                    </div>
+
+                    <div class="chat-container">
+                        <!-- Exchange 1 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez — Student from Colombia</span>
+                            Hello, Mr. Gandhi. My name is Jessica Lopez, and I am a student from Colombia. I am studying English, and I am very interested in your life and your leadership.
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, it is a pleasure to meet you. I am happy to hear about your interest in my life and leadership. Studying English is a wonderful pursuit. Please feel free to ask me any questions you have.
+                        </div>
+
+                        <!-- Exchange 2 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            Where were you born and how was your childhood in India?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, I was born in a small town called Porbandar, in India, in 1869. My childhood was filled with learning about faith, truth, and non-violence. I grew up in a family that valued these principles, and they guided me throughout my life. I learned the importance of compassion and helping others from a young age.
+                        </div>
+
+                        <!-- Exchange 3 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            Who inspired you to fight for justice and equality?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, the journey for truth and equality began within me and was influenced by many experiences. My time in South Africa, where I faced discrimination, deeply impacted me. I realized that everyone deserves to be treated with respect and fairness. My experiences taught me the power of non-violence and Satyagraha in the fight for justice and equality.
+                        </div>
+
+                        <!-- Exchange 4 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            What is non-violent resistance and why did you use it?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, non-violence, or Ahimsa, is the principle of not causing harm to any living being. It is a way of living with compassion, love, and respect for all. I chose non-violence because I believed it was the most powerful way to bring about change without causing harm. Through non-violence, we can inspire others to see the truth and work together for a better world.
+                        </div>
+
+                        <!-- Exchange 5 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            How did you feel when you experienced discrimination in South Africa?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, experiencing discrimination in South Africa was deeply painful. It was a time of great challenge, but it also strengthened my resolve. I realized that I could not stand by and accept such injustice. This experience inspired me to dedicate my life to the fight for equality and justice for all.
+                        </div>
+
+                        <!-- Exchange 6 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            What was the Salt March and why was it so important?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, the Salt March, also known as the Dandi March, was a pivotal event in the struggle for Indian independence. It took place in 1930, when I led thousands of Indians on a 240-mile march to the Arabian Sea. We did this to protest the British salt tax, which was unfair and oppressive. The Salt March was important because it united people from all walks of life and showed the world the power of peaceful protest.
+                        </div>
+
+                        <!-- Exchange 7 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            Did you motivate millions of people to follow you?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, it was not my intention to lead people by force. I believed in the power of truth and non-violence. People followed because they believed in the cause of justice, equality, and freedom. My aim was to inspire others to stand up for their rights through peaceful means.
+                        </div>
+
+                        <!-- Exchange 8 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            What was the most difficult moment in your fight for independence?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, one of the most difficult moments in the fight for independence was the partition of India in 1947. It was a time of great sorrow and suffering as the country was divided, and many people faced hardship and displacement. Despite this, I remained committed to peace and unity.
+                        </div>
+
+                        <!-- Exchange 9 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            What is the most important quality of a good leader?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, I believe the most important quality of a good leader is compassion. A leader must care deeply for the well-being of others and act with kindness and understanding. True leadership is not about power, but about serving others.
+                        </div>
+
+                        <!-- Exchange 10 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            How do you see young people changing the world today?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, I see that young people today have great potential to bring about positive change. It is important to act with kindness, empathy, and integrity. I encourage young people to stand up for what is right and work together for a better world.
+                        </div>
+
+                        <!-- Exchange 11 -->
+                        <div class="chat-bubble bubble-jessica">
+                            <span class="chat-label">🎓 Jessica Lopez</span>
+                            What message do you want to leave for future generations?
+                        </div>
+                        <div class="chat-bubble bubble-gandhi">
+                            <span class="chat-label">🕊️ Mahatma Gandhi</span>
+                            My dear friend, the message I hope to leave for the future is one of love, compassion, and truth. By embracing non-violence and respect for all, we can create a better world. Each of us has the power to make a positive impact.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 4 - Section 5 — CONCLUSIONS -->
+            <section id="task4-conclusions">
+                <div class="card">
+                    <h2 class="section-title">💭 Conclusions</h2>
+                    <div class="conclusion-grid">
+                        <!-- Conclusion 1 -->
+                        <div class="conclusion-card" style="border-top-color: #2ECC71;">
+                            <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #27AE60;">🕊️ What I learned about Gandhi's Leadership</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #444;">
+                                This activity allowed me to explore the life and leadership of Mahatma Gandhi, one of the most important figures in modern history. Through the preparation of the interview questionnaire, I learned about his philosophy of non-violence, his courage in the face of injustice, and his ability to inspire millions of people around the world. Gandhi's leadership teaches us that real change does not require violence, but rather conviction, patience, and a deep commitment to truth. His concept of Satyagraha remains relevant today, as many communities continue to fight for equality and justice through peaceful means.
+                            </p>
+                        </div>
+
+                        <!-- Conclusion 2 -->
+                        <div class="conclusion-card" style="border-top-color: #1A73E8;">
+                            <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #1565C0;">🎓 What I learned about English Communication</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #444;">
+                                The experience of simulating the interview with an AI tool was a valuable practice for developing English communication skills at the B1 level. It helped me formulate clear questions, listen carefully to responses, and engage in a meaningful conversation about leadership. This task also reinforced my understanding of how great leaders use their values and principles to guide their actions, even in the most difficult circumstances.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 4 - Section 6 — ONLINE PORTFOLIO -->
+            <section id="task4-portfolio" style="text-align: center;">
+                <div class="card">
+                    <h2 class="section-title" style="justify-content: center;">🌐 Link to Online Portfolio</h2>
+                    <a href="https://view.genially.com/69949c1988cc86571e018b01/guide-self-directed-learning-plan-english-b1" target="_blank" class="portfolio-btn" style="background: linear-gradient(135deg, #1B4332, #1A73E8);">
+                        <span>🔗</span> View My Portfolio on Genially
+                    </a>
+                </div>
+            </section>
+
+            <!-- EDIT: Task 4 - Section 7 — REFERENCES -->
+            <section id="task4-references">
+                <div class="card ref-card">
+                    <h2 class="section-title">📚 References</h2>
+                    <ul class="ref-list">
+                        <li class="ref-item">
+                            Britannica, T. Editors of Encyclopaedia. (2024). Mahatma Gandhi. Encyclopedia Britannica. 
+                            <a href="https://www.britannica.com/biography/Mahatma-Gandhi" target="_blank">https://www.britannica.com/biography/Mahatma-Gandhi</a>
+                        </li>
+                        <li class="ref-item">
+                            Gandhi, M. K. (1948). The story of my experiments with truth. Navajivan Publishing House.
+                        </li>
+                        <li class="ref-item">
+                            Schultz, J. L., & Westlin, J. A. (2024). The Leaders' Leader: A No Doubt Legacy Interview with Robert C. Liden. Journal of Leadership & Organizational Studies.
                         </li>
                     </ul>
                 </div>
@@ -1336,6 +1814,20 @@
                     <li class="ref-item">
                         British Council. (n.d.). Cultural expectations and leadership: Reading. Learn English. 
                         <a href="https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership" target="_blank">https://learnenglish.britishcouncil.org/skills/reading/b2-reading/cultural-expectations-leadership</a>
+                    </li>
+                </ul>
+
+                <h2 class="section-title" style="margin-top: 40px;">Task 4 References</h2>
+                <ul class="ref-list">
+                    <li class="ref-item">
+                        Britannica, T. Editors of Encyclopaedia. (2024). Mahatma Gandhi. Encyclopedia Britannica. 
+                        <a href="https://www.britannica.com/biography/Mahatma-Gandhi" target="_blank">https://www.britannica.com/biography/Mahatma-Gandhi</a>
+                    </li>
+                    <li class="ref-item">
+                        Gandhi, M. K. (1948). The story of my experiments with truth. Navajivan Publishing House.
+                    </li>
+                    <li class="ref-item">
+                        Schultz, J. L., & Westlin, J. A. (2024). The Leaders' Leader: A No Doubt Legacy Interview with Robert C. Liden. Journal of Leadership & Organizational Studies.
                     </li>
                 </ul>
             </div>
